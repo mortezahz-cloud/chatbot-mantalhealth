@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>چت‌بات همدل 😊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: linear-gradient(to top right, #dfe9f3, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background-color: #7f91ff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    #chat {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .message {
+      padding: 0.7rem 1rem;
+      border-radius: 20px;
+      max-width: 70%;
+      line-height: 1.4;
+    }
+    .bot {
+      background-color: #e0e7ff;
+      align-self: flex-start;
+    }
+    .user {
+      background-color: #c1f0dc;
+      align-self: flex-end;
+    }
+    #input-area {
+      display: flex;
+      padding: 1rem;
+      background-color: #f3f3f3;
+    }
+    #input-area input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    #input-area button {
+      margin-right: 0.5rem;
+      padding: 0.6rem 1rem;
+      background-color: #7f91ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>🤖 چت‌بات همدل — همراه تو!</header>
+  <div id="chat">
+    <div class="message bot">سلام! 👋 من همدل‌ام. دوست دارم از حالت برام بگی 💬</div>
+  </div>
+  <div id="input-area">
+    <button onclick="sendMessage()">ارسال</button>
+    <input type="text" id="user-input" placeholder="اینجا بنویس...">
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("user-input");
+
+    function sendMessage() {
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerText = text;
+      chat.appendChild(userMsg);
+
+      input.value = "";
+      setTimeout(() => respond(text), 500);
+    }
+
+    function respond(inputText) {
+      const botMsg = document.createElement("div");
+      botMsg.className = "message bot";
+      let response = "ممنون که گفتی ❤️";
+
+      if (inputText.includes("استرس") || inputText.includes("نگران")) {
+        response = "می‌خوای با هم یه نفس عمیق بکشیم؟ 😌";
+      } else if (inputText.includes("افسرده") || inputText.includes("غمگین")) {
+        response = "متاسفم که حالت خوب نیست 😔 همیشه اینطوری نمی‌مونه، قول می‌دم.";
+      } else if (inputText.includes("خوشحال") || inputText.includes("شاد")) {
+        response = "آفرین! خیلی خوبه که امروز حالت خوبه 😄";
+      }
+
+      botMsg.innerText = response;
+      chat.appendChild(botMsg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
