@@ -1,0 +1,38 @@
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background-color: #f5f7ff;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+header {
+  background-color: #7f91ff;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+nav {
+  background-color: #dfe4ff;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+main {
+  padding: 1.5rem;
+}
+a.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #7f91ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
