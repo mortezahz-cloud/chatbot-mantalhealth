@@ -5,6 +5,51 @@
   <meta charset="UTF-8">
   <title>چت‌بات همدل</title>
   <link href="style.css" rel="stylesheet">
+  <style>
+    #chat-box {
+      background-color: #eef1ff;
+      border-radius: 10px;
+      padding: 1rem;
+      height: 400px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.7rem 1rem;
+      border-radius: 15px;
+      max-width: 70%;
+      line-height: 1.5;
+    }
+    .bot {
+      background-color: #d4e4ff;
+      align-self: flex-start;
+    }
+    .user {
+      background-color: #c1f0dc;
+      align-self: flex-end;
+      margin-right: auto;
+    }
+    #input-area {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    #input-area button {
+      padding: 0.5rem 1rem;
+      background-color: #7f91ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header>💬 چت‌بات همدل</header>
@@ -14,7 +59,47 @@
     <a href="blog.html">وبلاگ</a>
   </nav>
   <main>
-    <iframe src="https://mortezahz-cloud.github.io/chatbot-mantalhealth" width="100%" height="600px" style="border:none;"></iframe>
+    <div id="chat-box"></div>
+    <div id="input-area">
+      <input type="text" id="user-input" placeholder="بنویس چی تو دلت هست...">
+      <button onclick="sendMessage()">ارسال</button>
+    </div>
   </main>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.className = "message " + sender;
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === "") return;
+
+      addMessage(text, "user");
+      userInput.value = "";
+
+      setTimeout(() => {
+        let response = "ممنون که گفتی ❤️";
+        if (text.includes("استرس") || text.includes("نگران")) {
+          response = "می‌خوای با هم یه نفس عمیق بکشیم؟ 😌";
+        } else if (text.includes("افسرده") || text.includes("غمگین")) {
+          response = "متاسفم که حالت خوب نیست 😔 همیشه اینطوری نمی‌مونه، قول می‌دم.";
+        } else if (text.includes("خوشحال") || text.includes("شاد")) {
+          response = "آفرین! خیلی خوبه که امروز حالت خوبه 😄";
+        }
+        addMessage(response, "bot");
+      }, 600);
+    }
+
+    // پیام اولیه
+    addMessage("سلام! 👋 من همدل‌ام. هرچی تو دلت هست می‌تونی اینجا باهام در میون بذاری 💬", "bot");
+  </script>
 </body>
 </html>
